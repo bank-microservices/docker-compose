@@ -1,0 +1,59 @@
+version: "3.9"
+services:
+  mongodb-server:
+    image: mongo:5.0
+    ports:
+      - 27017:27017
+    volumes:
+      - "./mongodb-data:/data/db/"
+    networks:
+      - ${GLOBAL_NETWORK:-services}
+
+  config-server:
+    image: ${GROUP_ID}/config-server:${SERVICE_VERSION:-latest}
+    ports:
+      - "8888:8888"
+    volumes:
+      - "./docker-logs:/workspace/logs"
+    environment:
+      - "JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n -Xms128m -Xmx256m"
+      - "LOGGING_LEVEL_ROOT=info"
+      - "CONFIG_PORT=8888"
+      - "HOSTNAME=config-server"
+    networks:
+      - ${GLOBAL_NETWORK:-services}
+
+  discovery-server:
+    image: ${GROUP_ID}/discovery-server:${SERVICE_VERSION:-latest}
+    ports:
+      - "8761:8761"
+    volumes:
+      - "./docker-logs:/workspace/logs"
+    environment:
+      - "JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n -Xms128m -Xmx256m"
+      - "LOGGING_LEVEL_ROOT=info"
+      - "DISCOVERY_PORT=8761"
+      - "HOSTNAME=discovery-server"
+    depends_on:
+      - config-server
+    networks:
+      - ${GLOBAL_NETWORK:-services}
+
+  api-gateway-server:
+    image: ${GROUP_ID}/api-gateway-server:${SERVICE_VERSION:-latest}
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./docker-logs:/workspace/logs"
+    environment:
+      - "JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n -Xms128m -Xmx256m"
+      - "LOGGING_LEVEL_ROOT=info"
+      - "CONFIG_SERVER_URI=http://config-server:8888"
+      - "EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://discovery-server:8761/eureka"
+      - "START_TIME_SLEEP=50"
+      - "HOSTNAME=api-gateway-server"
+    depends_on:
+      - discovery-server
+      - config-server
+    networks:
+      - ${GLOBAL_NETWORK:-services}

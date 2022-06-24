@@ -1,0 +1,141 @@
+version: "3.9"
+services:
+  client-service:
+    image: ${GROUP_ID}/client-service:${SERVICE_VERSION:-latest}
+    ports:
+      - "8081:8081"
+    volumes:
+      - "./docker-logs:/logs"
+    environment:
+      - "JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -Xms128m -Xmx256m"
+      - "LOGGING_LEVEL_COM_NTTDATA_MICROSERVICES=info"
+      - "LOGGING_LEVEL_ROOT=info"
+      - "CONFIG_SERVER_URI=http://config-server:8888"
+      - "EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://discovery-server:8761/eureka"
+      - "MONGODB_CONNSTRING=mongodb://mongodb-server:27017/clientdb"
+      - "MONGO_USERNAME=''"
+      - "MONGO_PASSWORD=''"
+      - "START_TIME_SLEEP=40"
+      - "HOSTNAME=client-service"
+    depends_on:
+      - discovery-server
+      - config-server
+      - mongodb-server
+    networks:
+      - ${GLOBAL_NETWORK:-services}
+
+  account-service:
+    image: ${GROUP_ID}/account-service:${SERVICE_VERSION:-latest}
+    ports:
+      - "8082:8082"
+    volumes:
+      - "./docker-logs:/logs"
+    environment:
+      - "JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -Xms128m -Xmx256m"
+      - "LOGGING_LEVEL_COM_NTTDATA_MICROSERVICES=info"
+      - "LOGGING_LEVEL_ROOT=info"
+      - "CONFIG_SERVER_URI=http://config-server:8888"
+      - "EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://discovery-server:8761/eureka"
+      - "MONGODB_CONNSTRING=mongodb://mongodb-server:27017/accountdb"
+      - "MONGO_USERNAME=''"
+      - "MONGO_PASSWORD=''"
+      - "START_TIME_SLEEP=40"
+      - "HOSTNAME=account-service"
+    depends_on:
+      - discovery-server
+      - config-server
+      - mongodb-server
+    networks:
+      - ${GLOBAL_NETWORK:-services}
+
+  credit-service:
+    image: ${GROUP_ID}/credit-service:${SERVICE_VERSION:-latest}
+    ports:
+      - "8083:8083"
+    volumes:
+      - "./docker-logs:/logs"
+    environment:
+      - "JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -Xms128m -Xmx256m"
+      - "LOGGING_LEVEL_COM_NTTDATA_MICROSERVICES=info"
+      - "LOGGING_LEVEL_ROOT=info"
+      - "CONFIG_SERVER_URI=http://config-server:8888"
+      - "EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://discovery-server:8761/eureka"
+      - "MONGODB_CONNSTRING=mongodb://mongodb-server:27017/accountdb"
+      - "MONGO_USERNAME=''"
+      - "MONGO_PASSWORD=''"
+      - "START_TIME_SLEEP=40"
+      - "HOSTNAME=credit-service"
+    depends_on:
+      - discovery-server
+      - config-server
+      - mongodb-server
+    networks:
+      - ${GLOBAL_NETWORK:-services}
+
+  transaction-service:
+    image: ${GROUP_ID}/transaction-service:${SERVICE_VERSION:-latest}
+    ports:
+      - "8084:8084"
+    volumes:
+      - "./docker-logs:/logs"
+    environment:
+      - "JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -Xms128m -Xmx256m"
+      - "LOGGING_LEVEL_COM_NTTDATA_MICROSERVICES=info"
+      - "LOGGING_LEVEL_ROOT=info"
+      - "CONFIG_SERVER_URI=http://config-server:8888"
+      - "EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://discovery-server:8761/eureka"
+      - "MONGODB_CONNSTRING=mongodb://mongodb-server:27017/transactiondb"
+      - "MONGO_USERNAME=''"
+      - "MONGO_PASSWORD=''"
+      - "START_TIME_SLEEP=40"
+      - "HOSTNAME=transaction-service"
+    depends_on:
+      - discovery-server
+      - config-server
+      - mongodb-server
+    networks:
+      - ${GLOBAL_NETWORK:-services}
+
+  debit-card-service:
+    image: ${GROUP_ID}/debit-card-service:${SERVICE_VERSION:-latest}
+    ports:
+      - "8086:8086"
+    volumes:
+      - "./docker-logs:/logs"
+    environment:
+      - "JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -Xms128m -Xmx256m"
+      - "LOGGING_LEVEL_COM_NTTDATA_MICROSERVICES=info"
+      - "LOGGING_LEVEL_ROOT=info"
+      - "CONFIG_SERVER_URI=http://config-server:8888"
+      - "EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://discovery-server:8761/eureka"
+      - "MONGODB_CONNSTRING=mongodb://mongodb-server:27017/debitcarddb"
+      - "MONGO_USERNAME=''"
+      - "MONGO_PASSWORD=''"
+      - "START_TIME_SLEEP=40"
+      - "HOSTNAME=debit-card-service"
+    depends_on:
+      - discovery-server
+      - config-server
+      - mongodb-server
+    networks:
+      - ${GLOBAL_NETWORK:-services}
+
+  report-service:
+    image: ${GROUP_ID}/report-service:${SERVICE_VERSION:-latest}
+    ports:
+      - "8085:8085"
+    volumes:
+      - "./docker-logs:/logs"
+    environment:
+      - "JAVA_OPTS=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005 -Xms128m -Xmx256m"
+      - "LOGGING_LEVEL_COM_NTTDATA_MICROSERVICES=info"
+      - "LOGGING_LEVEL_ROOT=info"
+      - "CONFIG_SERVER_URI=http://config-server:8888"
+      - "EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://discovery-server:8761/eureka"
+      - "START_TIME_SLEEP=40"
+      - "HOSTNAME=report-service"
+    depends_on:
+      - discovery-server
+      - config-server
+    networks:
+      - ${GLOBAL_NETWORK:-services}
