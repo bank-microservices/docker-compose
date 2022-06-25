@@ -50,7 +50,7 @@ services:
       - "LOGGING_LEVEL_ROOT=info"
       - "CONFIG_SERVER_URI=http://config-server:8888"
       - "EUREKA_CLIENT_SERVICE_URL_DEFAULTZONE=http://discovery-server:8761/eureka"
-      - "START_TIME_SLEEP=50"
+      - "START_TIME_SLEEP=20"
       - "HOSTNAME=api-gateway-server"
     depends_on:
       - discovery-server

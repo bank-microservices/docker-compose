@@ -17,6 +17,6 @@ docker-compose -f common.yml -f services.yml up
  *O también puede ejecutar todo a la vez, mediante el siguiente comando:*
 
  ````
- docker-compose
+ docker-compose up
  ````
 

@@ -1,0 +1,1548 @@
+{
+	"info": {
+		"_postman_id": "19762c31-7c43-4d32-8327-69bb0546e36f",
+		"name": "Bank",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21371761"
+	},
+	"item": [
+		{
+			"name": "Client",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/client",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByNumber",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/client/document-number/21877461",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"client",
+								"document-number",
+								"21877461"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/client/629a757bf8d8675678789e33",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"client",
+								"629a757bf8d8675678789e33"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPersonal",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"randomNumber\", _.randumNumberFixed(8));\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{\n\t\t\"firstNameBusiness\": \"{{$randomFirstName}}\",\n\t\t\"surnames\": \"{{$randomLastName}}\",\n\t\t\"documentNumber\": \"{{randomNumber}}\",\n\t\t\"email\": \"{{$randomEmail}}\",\n\t\t\"address\": \"{{$randomStreetAddress}}\",\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\",\n\t\t\"documentType\": \"DNI\",\n\t\t\"clientType\": \"PERSONAL\",\n        \"clientProfile\": \"REGULAR\",\n\t\t\"status\": \"true\"\n\t}"
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/client",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createBussiness",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.globals.set(\"randomNumber\", _.randumNumberFixed(10));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{\n\t\t\"firstNameBusiness\": \"{{$randomCompanyName}}\",\n\t\t\"surnames\": \"{{$randomCompanySuffix}}\",\n\t\t\"documentNumber\": \"{{randomNumber}}\",\n\t\t\"email\": \"{{$randomEmail}}\",\n\t\t\"address\": \"{{$randomStreetAddress}}\",\n\t\t\"phoneNumber\": \"{{$randomPhoneNumber}}\",\n\t\t\"documentType\": \"RUC\",\n\t\t\"clientType\": \"BUSINESS\",\n        \"clientProfile\": \"PYME\",\n\t\t\"status\": \"true\"\n\t}"
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/client",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"client"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CreditProduct",
+			"item": [
+				{
+					"name": "CreditCard",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/credit/card",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"credit",
+										"card"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "listClientNumber",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/credit/card/client/21877461",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"credit",
+										"card",
+										"client",
+										"21877461"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByAccountNumber",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/credit/card/account/12208640105588",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"credit",
+										"card",
+										"account",
+										"12208640105588"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"clientDocumentNumber\": \"55096439\",\n    \"accountNumber\": \"1220864010511\",\n    \"cci\": \"{{randomNumberCci}}\",    \n    \"cardNumber\": \"1234567890123715\",\n    \"cvv\": \"3333\",\n    \"expirationDate\": \"2023-01-30\",    \n    \"creditLimit\": 1900\n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/credit/card",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"credit",
+										"card"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Credit",
+					"item": [
+						{
+							"name": "list",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/credit",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"credit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByAccountNumber",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/credit/account-number/12208640105555",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"credit",
+										"account-number",
+										"12208640105555"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByClientDocument",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/credit/client-document/54083510",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"credit",
+										"client-document",
+										"54083510"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.globals.set(\"randomNumberCci\", _.randumNumberFixed(20));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"clientDocumentNumber\": \"55096439\",\n  \"accountNumber\": \"12208640105500\",\n  \"cci\": \"{{randomNumberCci}}\",\n  \"creditLimit\": 1800,\n  \"amount\": 900  \n}"
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/credit",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"credit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateAmount",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/credit/amount/62a125b629d7ad025ea1bab8/900",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"credit",
+										"amount",
+										"62a125b629d7ad025ea1bab8",
+										"900"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "updateLimit",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/credit/limit/62ab3def8d2ede0da07cf0e7/1900",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"credit",
+										"limit",
+										"62ab3def8d2ede0da07cf0e7",
+										"1900"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Type",
+					"item": [
+						{
+							"name": "AccountSaving",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{    \r\n    \"code\": \"01\",\r\n    \"description\": \"Cuenta de Ahorro\",\r\n    \"transactionFeeBase\": 0.1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/account/type",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"account",
+										"type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AccountSavingUpdate",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"01\",\r\n    \"description\": \"Cuenta de Ahorro\",\r\n    \"transactionFeeBase\": 0.2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/account/type/62ab592af664384e9737d905",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"account",
+										"type",
+										"62ab592af664384e9737d905"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AccountCurrent",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{    \r\n    \"code\": \"02\",\r\n    \"description\": \"Cuenta corrient\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/account/type",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"account",
+										"type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AccountCurrentUpdate",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"02\",\r\n    \"description\": \"Cuenta corrient\",\r\n    \"transactionFeeBase\": 0.5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/account/type/62ab592ef664384e9737d906",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"account",
+										"type",
+										"62ab592ef664384e9737d906"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AccountFiexTerm",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{    \r\n    \"code\": \"03\",\r\n    \"description\": \"Cuenta a plazo fijo\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/account/type",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"account",
+										"type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AccountFiexTermUpdate",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{    \r\n    \"code\": \"03\",\r\n    \"description\": \"Cuenta a plazo fijo\",\r\n     \"transactionFeeBase\": 0.3\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/account/type/62ab5932f664384e9737d907",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"account",
+										"type",
+										"62ab5932f664384e9737d907"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/account/type",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"account",
+										"type"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByCode",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/account/type/01",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"account",
+										"type",
+										"01"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Account",
+					"item": [
+						{
+							"name": "findAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/account",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"account"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByClientDocument",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/account/client-document/21877461",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"account",
+										"client-document",
+										"21877461"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByAccountNumber",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/account/account-number/12208640105599",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"account",
+										"account-number",
+										"12208640105599"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByAccountAndClientDoc",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/account/number/12208640105511/client/87739838",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"account",
+										"number",
+										"12208640105511",
+										"client",
+										"87739838"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create-saving",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"clientDocumentNumber\": \"46052174\",\r\n    \"accountNumber\": \"12208640100001\",\r\n    \"cci\": \"{{randomNumberCci}}\",\r\n    \"amount\": 200,\r\n    \"maintenanceFee\": 0,\r\n    \"maxLimitMonthlyMovements\": 5,\r\n    \"accountTypeCode\": \"01\",\r\n    \"dayAllowed\": 0,\r\n    \"owners\": [\r\n        {\r\n            \"documentNumber\": \"{{randomNumberDni}}\",\r\n            \"firstName\": \"{{$randomFirstName}}\",\r\n            \"lastName\": \"{{$randomLastName}}\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/account",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"account"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create-current",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"clientDocumentNumber\": \"51266199\",\r\n    \"accountNumber\": \"12208640101111\",\r\n    \"cci\": \"{{randomNumberCci}}\",\r\n    \"amount\": 1,\r\n    \"maintenanceFee\": 2.3,\r\n    \"maxLimitMonthlyMovements\": 0,\r\n    \"accountTypeCode\": \"02\",\r\n    \"dayAllowed\": 0,\r\n    \"owners\": [\r\n        {\r\n            \"documentNumber\": \"{{randomNumberDni}}\",\r\n            \"firstName\": \"{{$randomFirstName}}\",\r\n            \"lastName\": \"{{$randomLastName}}\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/account",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"account"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create-fixed-term",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"clientDocumentNumber\": \"2937711267\",\r\n    \"accountNumber\": \"12208640105512\",\r\n    \"cci\": \"{{randomNumberCci}}\",\r\n    \"amount\": 1,\r\n    \"maintenanceFee\": 0,\r\n    \"maxLimitMonthlyMovements\": 1,\r\n    \"accountTypeCode\": \"03\",\r\n    \"dayAllowed\": 31,\r\n    \"owners\": [\r\n        {\r\n            \"documentNumber\": \"{{randomNumberDni}}\",\r\n            \"firstName\": \"{{$randomFirstName}}\",\r\n            \"lastName\": \"{{$randomLastName}}\"\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/account",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"account"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.globals.set(\"randomNumberCci\", _.randumNumberFixed(20));",
+							"pm.globals.set(\"randomNumberDni\", _.randumNumberFixed(8));"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "Payments",
+					"item": [
+						{
+							"name": "findAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/transaction/payment",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transaction",
+										"payment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByCreditId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/transaction/payment/credit/62aff39dd5b4124749d498e8",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transaction",
+										"payment",
+										"credit",
+										"62aff39dd5b4124749d498e8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByCreditNumber",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/transaction/payment/credit-number/12208640105588",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transaction",
+										"payment",
+										"credit-number",
+										"12208640105588"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findWithCardByCreditId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/transaction/payment/credit/62ab3cdc8d2ede0da07cf0e5",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transaction",
+										"payment",
+										"credit",
+										"62ab3cdc8d2ede0da07cf0e5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreatePayment",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"accountNumber\": \"12208640105588\",\n\t\"amount\": 80.00\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8084/api/v1/transaction/payment",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8084",
+									"path": [
+										"api",
+										"v1",
+										"transaction",
+										"payment"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Consumption",
+					"item": [
+						{
+							"name": "findAll",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"accountNumber\": \"12208640102836\",\r\n\t\"amount\": 20.00\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/transaction/consumption",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transaction",
+										"consumption"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByCreditId",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"accountNumber\": \"12208640102836\",\r\n\t\"amount\": 20.00\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/transaction/consumption/credit/62affccded3ea130e5f8a3c9",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transaction",
+										"consumption",
+										"credit",
+										"62affccded3ea130e5f8a3c9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByCreditNumber",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"accountNumber\": \"12208640102836\",\r\n\t\"amount\": 20.00\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/transaction/consumption/credit-number/12208640105588",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transaction",
+										"consumption",
+										"credit-number",
+										"12208640105588"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createConsump",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"accountNumber\": \"12208640105588\",\r\n\t\"amount\": 500.00\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/transaction/consumption",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transaction",
+										"consumption"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "TxAccount",
+					"item": [
+						{
+							"name": "findAll",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/transaction",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transaction"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByAccountNumber",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/transaction/account-number/12208640102222",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transaction",
+										"account-number",
+										"12208640102222"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByAccountId",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/transaction/account/62b0f87bcfbc3f4feb72fd48",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transaction",
+										"account",
+										"62b0f87bcfbc3f4feb72fd48"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "findByDateRange",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{host}}/api/v1/transaction/date-range/2022-06-16/2022-06-30",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transaction",
+										"date-range",
+										"2022-06-16",
+										"2022-06-30"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createTxDeposit",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"accountNumber\": \"12208640105544\",\r\n\t\"amount\": 23\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/transaction/deposit",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transaction",
+										"deposit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createTxWithdraw",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"accountNumber\": \"12208640105544\",\r\n\t\"amount\": 78\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/transaction/withdraw",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transaction",
+										"withdraw"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "createTxTransfer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"sourceAccountNumber\": \"12208640102222\",\r\n    \"targetAccountNumber\": \"12208640105599\",\r\n    \"amount\": \"10.00\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/api/v1/transaction/transfer",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"transaction",
+										"transfer"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Report",
+			"item": [
+				{
+					"name": "getBalanceCredit",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/report/balance/credit/12208640105555",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"report",
+								"balance",
+								"credit",
+								"12208640105555"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBalanceCreditCard",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/report/balance/card/12208640105588",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"report",
+								"balance",
+								"card",
+								"12208640105588"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findTransactionsCredit",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/report/transaction/credit/12208640105555",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"report",
+								"transaction",
+								"credit",
+								"12208640105555"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getBalanceAccount",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8085/api/v1/report/balance/account/12208640100001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8085",
+							"path": [
+								"api",
+								"v1",
+								"report",
+								"balance",
+								"account",
+								"12208640100001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findTransactionsAccount",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/report/transaction/account/12208640102222",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"report",
+								"transaction",
+								"account",
+								"12208640102222"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findAllBankProductByClient",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/report/client/87739838",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"report",
+								"client",
+								"87739838"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findTransactionsFeeByDateRange",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/report/transaction/date-range/2022-06-16/2022-06-30",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"report",
+								"transaction",
+								"date-range",
+								"2022-06-16",
+								"2022-06-30"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "DebitCard",
+			"item": [
+				{
+					"name": "findAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/debit-card",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"debit-card"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "findByCardNumber",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/debit-card/card-number/1234567890123799",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"debit-card",
+								"card-number",
+								"1234567890123799"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cardNumber\": \"1234567890123799\",\r\n    \"cvv\": \"111\",\r\n    \"expirationDate\": \"2023-01-30\",\r\n    \"clientDocumentNumber\": \"87739838\",\r\n    \"mainAccountNumber\": \"12208640105511\",\r\n    \"secondaryAccountNumber\": [\r\n        \"12208640105544\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/v1/debit-card",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"debit-card"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/v1/debit-card/62335192427e812f7de5f563",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"debit-card",
+								"62335192427e812f7de5f563"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"Object.prototype.randumNumberFixed = function (length) {",
+					"    const min = Math.pow(10, (length - 1));",
+					"    const max = Math.pow(10, (length));",
+					"    return Math.floor(Math.random() * (max - min) + min);",
+					"};"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8080"
+		}
+	]
+}
